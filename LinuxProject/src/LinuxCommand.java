@@ -12,8 +12,8 @@ public class LinuxCommand {
   {
     try
     {
-        String lscmd = "ls *.c";
-        Process p=Runtime.getRuntime().exec("./lior/download/perlcd");
+        //String lscmd = "ls *.c";
+        Process p=Runtime.getRuntime().exec("/home/gkarp/git/LinuxProject/LinuxProject/first");
         p.waitFor();
         BufferedReader reader=new BufferedReader(new InputStreamReader(p.getInputStream()));
         String line=reader.readLine();
