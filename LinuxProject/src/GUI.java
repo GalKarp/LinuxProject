@@ -1,8 +1,11 @@
 import javax.swing.JFrame;
 import javax.swing.SpringLayout;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JList;
@@ -14,8 +17,10 @@ public class GUI extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	private LinuxCommand commands;
 	
-	public GUI() {
+	public GUI() throws IOException, InterruptedException {
+	    commands = new LinuxCommand();
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 		
@@ -127,6 +132,8 @@ public class GUI extends JFrame {
 		springLayout.putConstraint(SpringLayout.WEST, rdbtnX, 270, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, rdbtnX, 0, SpringLayout.SOUTH, btnAddUser);
 		springLayout.putConstraint(SpringLayout.NORTH, rdbtnX, 0, SpringLayout.NORTH, btnAddUser);
+		
+		
 		
 		getContentPane().add(rdbtnX);
 		setSize(1180, 693);
