@@ -1,27 +1,31 @@
+package BL;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 
 
 public class LinuxCommand {
 
  
-  public void cdCommand() throws IOException, InterruptedException
+  public void lsCommand(TreeView<String> treeView) throws IOException, InterruptedException
   {
     try
     {
-        //String lscmd = "ls *.c";
-        Process p=Runtime.getRuntime().exec("/home/gkarp/git/LinuxProject/LinuxProject/first");
+        Process p=Runtime.getRuntime().exec("ls");
         p.waitFor();
         BufferedReader reader=new BufferedReader(new InputStreamReader(p.getInputStream()));
         String line=reader.readLine();
+      TreeItem<String> root = new TreeItem<String>("Root Node");
+      root.setExpanded(true);
         while(line!=null)
         {
-            System.out.println(line);
+        	root.getChildren().add(new TreeItem<String>(line));
             line=reader.readLine();
         }
+        treeView.setRoot(root);
     }
     catch(IOException e1) {
         System.out.println("Pblm found1.");
