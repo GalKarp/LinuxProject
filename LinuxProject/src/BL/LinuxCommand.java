@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -64,5 +65,29 @@ public class LinuxCommand {
 
     System.out.println("finished.");
   }
+public void seeAllUsers(ComboBox<String> removeUser) {
+    try
+    {
+        Process p=Runtime.getRuntime().exec("/LinuxProject/src/BL/seeUser");
+        p.waitFor();
+        BufferedReader reader=new BufferedReader(new InputStreamReader(p.getInputStream()));
+        String line=reader.readLine();
+        while(line!=null)
+        {
+        	
+            line=reader.readLine();
+            removeUser.getItems().add(line);
+        }
+    }
+    catch(IOException e1) {
+        System.out.println("Pblm found1.");
+    }
+    catch(InterruptedException e2) {
+        System.out.println("Pblm found2.");
+    }
+
+    System.out.println("finished.");
+	
+}
 
 }
