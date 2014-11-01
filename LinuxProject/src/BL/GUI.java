@@ -100,11 +100,17 @@ public class GUI extends JFrame {
 		springLayout.putConstraint(SpringLayout.WEST, btnRemoveUser, 0, SpringLayout.WEST, btnLs);
 		getContentPane().add(btnRemoveUser);
 		
+		//remove user combobox
+		
 		JComboBox comboBox = new JComboBox();
 		springLayout.putConstraint(SpringLayout.NORTH, comboBox, 0, SpringLayout.NORTH, btnRemoveUser);
 		springLayout.putConstraint(SpringLayout.WEST, comboBox, 6, SpringLayout.EAST, btnRemoveUser);
 		springLayout.putConstraint(SpringLayout.EAST, comboBox, 0, SpringLayout.EAST, find);
 		getContentPane().add(comboBox);
+		
+		commands.RemoveUser(comboBox);
+		
+		//
 		
 		JRadioButton rdbtnDirectory = new JRadioButton("Directory");
 		springLayout.putConstraint(SpringLayout.NORTH, rdbtnDirectory, 0, SpringLayout.NORTH, btnGrep);
