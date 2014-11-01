@@ -46,7 +46,7 @@
       <Button layoutX="245.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="138.0" text="Where I am" />
       <TextArea fx:id="cosoleField" layoutX="388.0" layoutY="117.0" prefHeight="126.0" prefWidth="584.0" />
       <Button layoutX="495.0" layoutY="67.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="379.0" text="Button" />
-      <ScrollBar layoutX="952.0" layoutY="117.0" orientation="VERTICAL" prefHeight="126.0" prefWidth="20.0" />
+      <ScrollBar fx:id="scrollBar" layoutX="952.0" layoutY="117.0" orientation="VERTICAL" prefHeight="126.0" prefWidth="20.0" />
       <Button layoutX="692.0" layoutY="249.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" text="File View" />
       <PasswordField fx:id="addPass" layoutX="283.0" layoutY="552.0" prefHeight="31.0" prefWidth="175.0" promptText="Password" />
       <Separator layoutX="2.0" layoutY="502.0" prefHeight="9.0" prefWidth="480.0" style="-fx-background-color: fdgfdgfd;">

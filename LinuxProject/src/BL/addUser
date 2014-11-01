@@ -1,2 +1,2 @@
-sudo -s adduser $1
+sudo useradd -s /bin/bash -m -d /home/$1 --user-group $1 
 echo -e "$2\n$2" | passwd $1

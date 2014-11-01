@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
@@ -22,10 +23,13 @@ public class FXMLreader   {
     @FXML private TextField addName;
     @FXML private PasswordField addPass;
     @FXML private TextArea cosoleField;
-    @FXML private ComboBox<String> removeUser;
+    @FXML private static ComboBox<String> removeUser;
+    @FXML private ScrollBar scrollBar;
     @FXML private TreeView<String> treeView = new TreeView<String>();
-    private LinuxCommand commands = new LinuxCommand();
+    private static LinuxCommand commands = new LinuxCommand();
+    
 
+    
     @FXML protected void lsCommand(ActionEvent event) throws IOException, InterruptedException {
       commands.lsCommand(treeView);
     }
@@ -34,10 +38,11 @@ public class FXMLreader   {
     @FXML protected void lslstCommand(ActionEvent event) {
   }
     @FXML protected void addUserCMD(ActionEvent event) throws IOException, InterruptedException {
-    	commands.addUserCMD(cosoleField ,addUser , addName , addPass);
+    	commands.addUserCMD(scrollBar,cosoleField ,addUser , addName , addPass);
   }
     @FXML protected void removeUserCMD(ActionEvent event) throws IOException, InterruptedException {
     	commands.seeAllUsers(removeUser);
+
   }
 
 
