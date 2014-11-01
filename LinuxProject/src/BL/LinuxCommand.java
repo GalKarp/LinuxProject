@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.JTree;
@@ -20,84 +22,31 @@ import javafx.scene.control.TreeView;
 
 public class LinuxCommand {
 
- 
-  public void lsCommand(TreeView<String> treeView) throws IOException, InterruptedException
-  {
-    try
-    {
-        Process p=Runtime.getRuntime().exec("ls");
-        p.waitFor();
-        BufferedReader reader=new BufferedReader(new InputStreamReader(p.getInputStream()));
-        String line=reader.readLine();
-      root.setExpanded(true);
-        while(line!=null)
-        {
-        	root.getChildren().add(new TreeItem<String>(line));
-            line=reader.readLine();
-        }
-        treeView.setRoot(root);
-    }
-    catch(IOException e1) {
-        System.out.println("Pblm found1.");
-    }
-    catch(InterruptedException e2) {
-        System.out.println("Pblm found2.");
-    }
+		
+	  // can run basic ls or ps commands
+	  // can run command pipelines
+	  // can run sudo command if you know the password is correct
+	  public LinuxCommand() throws IOException, InterruptedException
+	  {
+	    // build the system command we want to run
+	    List<String> commands = new ArrayList<String>();
+	    commands.add("/LinuxProject/src/BL/seeUser");
+//	    commands.add("-c");
+//	    commands.add("ls -l /var/tmp | grep tmp");
 
-    System.out.println("finished.");
-  }
-  public void addUserCMD(ScrollBar scrollBar, final TextArea cosoleField, Button addUser, TextField addName, PasswordField addPass) throws IOException, InterruptedException
-  {
-    try{
-       
-//      ProcessBuilder pb = new ProcessBuilder("/home/galk/git/LinuxProject/LinuxProject/src/BL/addUser", " yael", " 12345");
-//      Process p = pb.start();
-//        Process p=Runtime.getRuntime().exec("pwd" );
-        p.waitFor();
-//        BufferedWriter writer=new BufferedWriter(new outputstre(p.getInputStream()));
-       System.out.println(p.getOutputStream());
-        BufferedReader reader=new BufferedReader(new InputStreamReader(p.getInputStream()));
-        String line=reader.readLine();
-        while(line!=null)
-        {
-        	System.out.println("1");
-        	System.out.println(line);
-            line=reader.readLine();
-            cosoleField.setText(line);
-        }
-    }
-    catch(IOException e1) {
-        System.out.println("Pblm found1.");
-    }
-    catch(InterruptedException e2) {
-        System.out.println("Pblm found2.");
-    }
+	    // execute the command
+	    SystemCommandExecutor commandExecutor = new SystemCommandExecutor(commands);
+	    int result = commandExecutor.executeCommand();
 
-    System.out.println("finished.");
-  }
-public void seeAllUsers(ComboBox<String> removeUser) {
-    try
-    {
-        Process p=Runtime.getRuntime().exec("/LinuxProject/src/BL/seeUser");
-        p.waitFor();
-        BufferedReader reader=new BufferedReader(new InputStreamReader(p.getInputStream()));
-        String line=reader.readLine();
-        while(line!=null)
-        {
-        	
-            line=reader.readLine();
-            removeUser.getItems().add(line);
-        }
-    }
-    catch(IOException e1) {
-        System.out.println("Pblm found1.");
-    }
-    catch(InterruptedException e2) {
-        System.out.println("Pblm found2.");
-    }
-
-    System.out.println("finished.");
-	
-}
-
+	    // get the stdout and stderr from the command that was run
+	    StringBuilder stdout = commandExecutor.getStandardOutputFromCommand();
+	    StringBuilder stderr = commandExecutor.getStandardErrorFromCommand();
+	    
+	    // print the stdout and stderr
+	    System.out.println("The numeric result of the command was: " + result);
+	    System.out.println("STDOUT:");
+	    System.out.println(stdout);
+	    System.out.println("STDERR:");
+	    System.out.println(stderr);
+	  }
 }
