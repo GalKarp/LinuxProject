@@ -29,7 +29,6 @@ public class LinuxCommand {
         p.waitFor();
         BufferedReader reader=new BufferedReader(new InputStreamReader(p.getInputStream()));
         String line=reader.readLine();
-      TreeItem<String> root = new TreeItem<String>("Root Node");
       root.setExpanded(true);
         while(line!=null)
         {
