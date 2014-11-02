@@ -54,6 +54,21 @@ public class LinuxCommand {
             p.destroy();
         } catch (Exception e) {}
     }
+	public void grepString(JComboBox comboBox) {
+        String s;
+        Process p;
+        try {
+            p = Runtime.getRuntime().exec("cut -d : -f 1 /etc/passwd");
+            BufferedReader br = new BufferedReader(
+                new InputStreamReader(p.getInputStream()));
+            while ((s = br.readLine()) != null){
+            comboBox.addItem(s);	
+            }
+            p.waitFor();
+            System.out.println ("exit: " + p.exitValue());
+            p.destroy();
+        } catch (Exception e) {}
+    }
 		
 	
 }
