@@ -34,6 +34,18 @@ public class GUI extends JFrame {
 		springLayout.putConstraint(SpringLayout.WEST, btnLs, 10, SpringLayout.WEST, getContentPane());
 		getContentPane().add(btnLs);
 		
+		JButton btnLsl = new JButton("ls -ls");
+		springLayout.putConstraint(SpringLayout.NORTH, btnLsl, 10, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, btnLsl, 6, SpringLayout.EAST, btnLs);
+//		springLayout.putConstraint(SpringLayout.EAST, btnLsl, 0, SpringLayout.EAST, btnShowSystemInfo);
+		getContentPane().add(btnLsl);
+		
+		JButton btnLslst = new JButton("ls -lst");
+		springLayout.putConstraint(SpringLayout.NORTH, btnLslst, 10, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, btnLslst, 6, SpringLayout.EAST, btnLsl);
+//		springLayout.putConstraint(SpringLayout.WEST, btnLslst, 6, SpringLayout.EAST, btnLsl);
+		getContentPane().add(btnLslst);
+		
 		JButton btnGrep = new JButton("Find");
 		springLayout.putConstraint(SpringLayout.EAST, btnLs, 0, SpringLayout.EAST, btnGrep);
 		springLayout.putConstraint(SpringLayout.NORTH, btnGrep, 578, SpringLayout.NORTH, getContentPane());
@@ -53,6 +65,7 @@ public class GUI extends JFrame {
 		getContentPane().add(btnNewButton);
 		
 		find = new JTextField();
+		springLayout.putConstraint(SpringLayout.EAST, btnLslst, -16, SpringLayout.EAST, find);
 		springLayout.putConstraint(SpringLayout.WEST, find, 91, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, btnGrep, -6, SpringLayout.WEST, find);
 		find.setText("  Enter String");
@@ -103,36 +116,20 @@ public class GUI extends JFrame {
 		springLayout.putConstraint(SpringLayout.SOUTH, rdbtnNewRadioButton, -425, SpringLayout.SOUTH, getContentPane());
 		getContentPane().add(rdbtnNewRadioButton);
 		
-		JRadioButton radioButton = new JRadioButton("Directory");
-		springLayout.putConstraint(SpringLayout.NORTH, textPane, 0, SpringLayout.NORTH, radioButton);
-		springLayout.putConstraint(SpringLayout.WEST, rdbtnNewRadioButton, 0, SpringLayout.WEST, radioButton);
-		springLayout.putConstraint(SpringLayout.SOUTH, rdbtnDirectory, 520, SpringLayout.NORTH, radioButton);
-		springLayout.putConstraint(SpringLayout.NORTH, radioButton, 93, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, radioButton, 183, SpringLayout.WEST, getContentPane());
-		getContentPane().add(radioButton);
 		
 		JRadioButton rdbtnR = new JRadioButton("R");
 		springLayout.putConstraint(SpringLayout.NORTH, rdbtnR, 134, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, rdbtnR, -495, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, rdbtnNewRadioButton, 35, SpringLayout.SOUTH, rdbtnR);
 		springLayout.putConstraint(SpringLayout.WEST, rdbtnR, 183, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, radioButton, -6, SpringLayout.NORTH, rdbtnR);
 		getContentPane().add(rdbtnR);
 		
-		JRadioButton rdbtnW = new JRadioButton("W");
-		springLayout.putConstraint(SpringLayout.NORTH, rdbtnW, 6, SpringLayout.SOUTH, radioButton);
-		springLayout.putConstraint(SpringLayout.SOUTH, rdbtnW, -495, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, rdbtnW, 6, SpringLayout.EAST, rdbtnR);
-		getContentPane().add(rdbtnW);
+
 		
-		JRadioButton rdbtnX = new JRadioButton("X");
-		springLayout.putConstraint(SpringLayout.NORTH, rdbtnX, 134, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, rdbtnW, -6, SpringLayout.WEST, rdbtnX);
-		springLayout.putConstraint(SpringLayout.WEST, rdbtnX, 270, SpringLayout.WEST, getContentPane());
+
 		
 		
 		
-		getContentPane().add(rdbtnX);
 		
 		JSeparator separator = new JSeparator();
 		springLayout.putConstraint(SpringLayout.SOUTH, btnRemoveUser, -6, SpringLayout.NORTH, separator);
@@ -158,12 +155,12 @@ public class GUI extends JFrame {
 		springLayout.putConstraint(SpringLayout.NORTH, comboBox, 47, SpringLayout.SOUTH, separator_1);
 		springLayout.putConstraint(SpringLayout.SOUTH, separator_1, -183, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, separator_1, 479, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, rdbtnX, -310, SpringLayout.NORTH, separator_1);
 		springLayout.putConstraint(SpringLayout.WEST, separator_1, 0, SpringLayout.WEST, separator);
 		springLayout.putConstraint(SpringLayout.EAST, separator_1, 708, SpringLayout.WEST, getContentPane());
 		getContentPane().add(separator_1);
 		
 		JButton btnShowSystemInfo = new JButton("Show System Info");
+		springLayout.putConstraint(SpringLayout.EAST, btnLsl, 0, SpringLayout.EAST, btnShowSystemInfo);
 		springLayout.putConstraint(SpringLayout.NORTH, btnShowSystemInfo, -45, SpringLayout.NORTH, separator_1);
 		springLayout.putConstraint(SpringLayout.WEST, btnShowSystemInfo, 10, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, btnShowSystemInfo, -6, SpringLayout.NORTH, separator_1);
@@ -176,43 +173,31 @@ public class GUI extends JFrame {
 		springLayout.putConstraint(SpringLayout.EAST, btnShowProcess, 0, SpringLayout.EAST, btnShowSystemInfo);
 		getContentPane().add(btnShowProcess);
 		
-		JButton btnLsl = new JButton("ls -ls");
-		springLayout.putConstraint(SpringLayout.NORTH, btnLsl, 10, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, btnLsl, 91, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, btnLsl, -618, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, btnLsl, 0, SpringLayout.EAST, btnShowSystemInfo);
-		getContentPane().add(btnLsl);
-		
-		JButton btnLslst = new JButton("ls -lst");
-		springLayout.putConstraint(SpringLayout.NORTH, btnLslst, 10, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, btnLslst, 6, SpringLayout.EAST, btnLsl);
-		getContentPane().add(btnLslst);
+
 		
 		JButton btnMv = new JButton("mv");
-		springLayout.putConstraint(SpringLayout.WEST, btnMv, 10, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, btnLs, -6, SpringLayout.NORTH, btnMv);
 		springLayout.putConstraint(SpringLayout.NORTH, btnMv, 52, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, btnMv, 10, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, btnMv, -301, SpringLayout.NORTH, btnShowProcess);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnLs, -6, SpringLayout.NORTH, btnMv);
 		getContentPane().add(btnMv);
 		
 		JComboBox comboBox_1 = new JComboBox();
 		springLayout.putConstraint(SpringLayout.EAST, btnMv, -6, SpringLayout.WEST, comboBox_1);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnLslst, -6, SpringLayout.NORTH, comboBox_1);
-		springLayout.putConstraint(SpringLayout.SOUTH, btnMv, 0, SpringLayout.SOUTH, comboBox_1);
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox_1, 6, SpringLayout.SOUTH, btnLsl);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnLsl, -6, SpringLayout.NORTH, comboBox_1);
+		springLayout.putConstraint(SpringLayout.NORTH, comboBox_1, 6, SpringLayout.SOUTH, btnLs);
 		springLayout.putConstraint(SpringLayout.WEST, comboBox_1, 0, SpringLayout.WEST, find);
-		springLayout.putConstraint(SpringLayout.SOUTH, comboBox_1, 42, SpringLayout.SOUTH, btnLsl);
+		springLayout.putConstraint(SpringLayout.SOUTH, comboBox_1, -46, SpringLayout.NORTH, rdbtnR);
 		springLayout.putConstraint(SpringLayout.EAST, comboBox_1, 0, SpringLayout.EAST, rdbtnR);
 		getContentPane().add(comboBox_1);
 		
 		JComboBox comboBox_2 = new JComboBox();
 		springLayout.putConstraint(SpringLayout.NORTH, comboBox_2, 6, SpringLayout.SOUTH, btnLslst);
-		springLayout.putConstraint(SpringLayout.WEST, comboBox_2, 6, SpringLayout.EAST, comboBox_1);
-		springLayout.putConstraint(SpringLayout.SOUTH, comboBox_2, -6, SpringLayout.NORTH, radioButton);
 		getContentPane().add(comboBox_2);
 		
 		JButton btnPwd = new JButton("pwd");
 		springLayout.putConstraint(SpringLayout.WEST, btnPwd, 521, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, btnLslst, -275, SpringLayout.WEST, btnPwd);
 		springLayout.putConstraint(SpringLayout.NORTH, btnPwd, 10, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, btnPwd, -433, SpringLayout.NORTH, separator_1);
 		btnPwd.addActionListener(new ActionListener() {
