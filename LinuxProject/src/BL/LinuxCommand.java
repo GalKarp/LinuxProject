@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComboBox;
+import javax.swing.JTextPane;
 
 
 public class LinuxCommand {
@@ -48,6 +49,37 @@ public class LinuxCommand {
                 new InputStreamReader(p.getInputStream()));
             while ((s = br.readLine()) != null){
             comboBox.addItem(s);	
+            }
+            p.waitFor();
+            System.out.println ("exit: " + p.exitValue());
+            p.destroy();
+        } catch (Exception e) {}
+    }
+	public void sysInfo(JTextPane textPane) {
+        String s;
+        Process p;
+        try {
+            p = Runtime.getRuntime().exec("lshw");
+            BufferedReader br = new BufferedReader(
+                new InputStreamReader(p.getInputStream()));
+            while ((s = br.readLine()) != null){
+            	System.out.println (s);
+            textPane.setText(s);	
+            }
+            p.waitFor();
+            System.out.println ("exit: " + p.exitValue());
+            p.destroy();
+        } catch (Exception e) {}
+    }
+	public void seeProcess(JTextPane textPane_1) {
+        String s;
+        Process p;
+        try {
+            p = Runtime.getRuntime().exec("ps -ef");
+            BufferedReader br = new BufferedReader(
+                new InputStreamReader(p.getInputStream()));
+            while ((s = br.readLine()) != null){
+            textPane_1.setText(s);	
             }
             p.waitFor();
             System.out.println ("exit: " + p.exitValue());

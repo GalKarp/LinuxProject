@@ -1,5 +1,6 @@
 package BL;
 import java.awt.GridLayout;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -20,7 +21,9 @@ public class CopyOfGUI extends JFrame {
 	private JTextField textField;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
-	public CopyOfGUI() {
+	private LinuxCommand commands;
+	public CopyOfGUI() throws IOException, InterruptedException {
+		commands = new LinuxCommand();
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 		
@@ -166,5 +169,9 @@ public class CopyOfGUI extends JFrame {
 		springLayout.putConstraint(SpringLayout.SOUTH, lblFileView, -6, SpringLayout.NORTH, tree);
 		springLayout.putConstraint(SpringLayout.EAST, lblFileView, -114, SpringLayout.EAST, getContentPane());
 		getContentPane().add(lblFileView);
+		
+		setSize(1180, 693);
+		setResizable(false);
+		setVisible(true);
 	}
 }

@@ -33,6 +33,7 @@ public class GUI extends JFrame {
 		springLayout.putConstraint(SpringLayout.NORTH, btnLs, 10, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, btnLs, 10, SpringLayout.WEST, getContentPane());
 		getContentPane().add(btnLs);
+
 		
 		JButton btnLsl = new JButton("ls -ls");
 		springLayout.putConstraint(SpringLayout.NORTH, btnLsl, 10, SpringLayout.NORTH, getContentPane());
@@ -216,6 +217,7 @@ public class GUI extends JFrame {
 		getContentPane().add(textPane_1);
 		
 		JLabel lblNewLabel = new JLabel("              Console");
+		springLayout.putConstraint(SpringLayout.NORTH, textPane, 6, SpringLayout.SOUTH, lblNewLabel);
 		springLayout.putConstraint(SpringLayout.EAST, comboBox_2, -497, SpringLayout.WEST, lblNewLabel);
 		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel, 52, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel, -577, SpringLayout.SOUTH, getContentPane());
@@ -246,5 +248,18 @@ public class GUI extends JFrame {
 		setSize(1180, 693);
 		setResizable(false);
 		setVisible(true);
+		commands.RemoveUser(comboBox);
+		btnShowProcess.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				commands.seeProcess(textPane);
+
+			}
+		});
+		btnShowSystemInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				commands.sysInfo(textPane);
+
+			}
+		});
 	}
 }
