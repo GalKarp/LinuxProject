@@ -12,7 +12,8 @@ public class Program {
 	      } catch (Exception e) {
 	        e.printStackTrace();
 	      }
-		new GUI();
+//		new GUI();
+	    new CopyOfGUI();
 
 	}
 
