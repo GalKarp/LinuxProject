@@ -1,4 +1,6 @@
 package BL;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,11 +12,21 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JTree;
 import javax.swing.SpringLayout;
+import javax.swing.JScrollBar;
+import javax.swing.JPanel;
+
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.TextArea;
+
+import javax.swing.JList;
+import javax.swing.JTextArea;
 
 
 public class GUI extends JFrame {
@@ -59,10 +71,7 @@ public class GUI extends JFrame {
 		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 10, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton, -10, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, btnNewButton, -1089, SpringLayout.EAST, getContentPane());
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+
 		getContentPane().add(btnNewButton);
 		
 		find = new JTextField();
@@ -84,17 +93,13 @@ public class GUI extends JFrame {
 		getContentPane().add(grep);
 		grep.setColumns(10);
 		
-		JTextPane textPane = new JTextPane();
-		springLayout.putConstraint(SpringLayout.SOUTH, textPane, -446, SpringLayout.SOUTH, btnNewButton);
-		getContentPane().add(textPane);
-		
 		JButton btnAddUser = new JButton("Add user");
 		springLayout.putConstraint(SpringLayout.EAST, btnAddUser, 0, SpringLayout.EAST, btnLs);
 		getContentPane().add(btnAddUser);
 		
 		txtEnterName = new JTextField();
 		springLayout.putConstraint(SpringLayout.NORTH, txtEnterName, 0, SpringLayout.NORTH, btnAddUser);
-		springLayout.putConstraint(SpringLayout.WEST, txtEnterName, 0, SpringLayout.WEST, find);
+		springLayout.putConstraint(SpringLayout.WEST, txtEnterName, 6, SpringLayout.EAST, btnAddUser);
 		txtEnterName.setText("   Enter Name");
 		getContentPane().add(txtEnterName);
 		txtEnterName.setColumns(10);
@@ -143,8 +148,9 @@ public class GUI extends JFrame {
 		getContentPane().add(separator);
 		
 		passwordField = new JPasswordField();
+		springLayout.putConstraint(SpringLayout.WEST, passwordField, 262, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, txtEnterName, -6, SpringLayout.WEST, passwordField);
 		springLayout.putConstraint(SpringLayout.NORTH, passwordField, 0, SpringLayout.NORTH, btnAddUser);
-		springLayout.putConstraint(SpringLayout.WEST, passwordField, 6, SpringLayout.EAST, txtEnterName);
 		passwordField.setToolTipText("Password");
 		getContentPane().add(passwordField);
 		
@@ -161,9 +167,9 @@ public class GUI extends JFrame {
 		getContentPane().add(separator_1);
 		
 		JButton btnShowSystemInfo = new JButton("Show System Info");
+		springLayout.putConstraint(SpringLayout.WEST, btnShowSystemInfo, 10, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, btnLsl, 0, SpringLayout.EAST, btnShowSystemInfo);
 		springLayout.putConstraint(SpringLayout.NORTH, btnShowSystemInfo, -45, SpringLayout.NORTH, separator_1);
-		springLayout.putConstraint(SpringLayout.WEST, btnShowSystemInfo, 10, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, btnShowSystemInfo, -6, SpringLayout.NORTH, separator_1);
 		getContentPane().add(btnShowSystemInfo);
 		
@@ -195,6 +201,8 @@ public class GUI extends JFrame {
 		
 		JComboBox comboBox_2 = new JComboBox();
 		springLayout.putConstraint(SpringLayout.NORTH, comboBox_2, 6, SpringLayout.SOUTH, btnLslst);
+		springLayout.putConstraint(SpringLayout.WEST, comboBox_2, 6, SpringLayout.EAST, comboBox_1);
+		springLayout.putConstraint(SpringLayout.SOUTH, comboBox_2, 0, SpringLayout.SOUTH, btnMv);
 		getContentPane().add(comboBox_2);
 		
 		JButton btnPwd = new JButton("pwd");
@@ -208,8 +216,6 @@ public class GUI extends JFrame {
 		getContentPane().add(btnPwd);
 		
 		JTextPane textPane_1 = new JTextPane();
-		springLayout.putConstraint(SpringLayout.WEST, textPane, 0, SpringLayout.WEST, textPane_1);
-		springLayout.putConstraint(SpringLayout.EAST, textPane, 0, SpringLayout.EAST, textPane_1);
 		springLayout.putConstraint(SpringLayout.WEST, textPane_1, 607, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, textPane_1, -10, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, btnPwd, -6, SpringLayout.WEST, textPane_1);
@@ -217,7 +223,6 @@ public class GUI extends JFrame {
 		getContentPane().add(textPane_1);
 		
 		JLabel lblNewLabel = new JLabel("              Console");
-		springLayout.putConstraint(SpringLayout.NORTH, textPane, 6, SpringLayout.SOUTH, lblNewLabel);
 		springLayout.putConstraint(SpringLayout.EAST, comboBox_2, -497, SpringLayout.WEST, lblNewLabel);
 		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel, 52, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel, -577, SpringLayout.SOUTH, getContentPane());
@@ -228,37 +233,80 @@ public class GUI extends JFrame {
 		getContentPane().add(lblNewLabel);
 		
 		JTree tree = new JTree();
+		springLayout.putConstraint(SpringLayout.NORTH, tree, 329, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, tree, -10, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, passwordField, -477, SpringLayout.WEST, tree);
-		springLayout.putConstraint(SpringLayout.EAST, txtEnterName, -644, SpringLayout.WEST, tree);
-		springLayout.putConstraint(SpringLayout.EAST, comboBox, -612, SpringLayout.WEST, tree);
 		springLayout.putConstraint(SpringLayout.EAST, btnShowSystemInfo, -725, SpringLayout.WEST, tree);
+		springLayout.putConstraint(SpringLayout.EAST, passwordField, -477, SpringLayout.WEST, tree);
+		springLayout.putConstraint(SpringLayout.EAST, comboBox, -612, SpringLayout.WEST, tree);
 		springLayout.putConstraint(SpringLayout.WEST, tree, -278, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, tree, -10, SpringLayout.EAST, getContentPane());
 		getContentPane().add(tree);
 		
 		JLabel lblFileView = new JLabel("           File View");
-		springLayout.putConstraint(SpringLayout.NORTH, lblFileView, 168, SpringLayout.SOUTH, textPane_1);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblFileView, -412, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, tree, 6, SpringLayout.SOUTH, lblFileView);
-		springLayout.putConstraint(SpringLayout.WEST, lblFileView, -180, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, lblFileView, -83, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, lblFileView, 237, SpringLayout.SOUTH, textPane_1);
+		springLayout.putConstraint(SpringLayout.WEST, lblFileView, -192, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, lblFileView, -6, SpringLayout.NORTH, tree);
+		springLayout.putConstraint(SpringLayout.EAST, lblFileView, -95, SpringLayout.EAST, getContentPane());
 		lblFileView.setBackground(SystemColor.activeCaption);
 		getContentPane().add(lblFileView);
 		setSize(1180, 693);
 		setResizable(false);
 		setVisible(true);
+		
 		commands.RemoveUser(comboBox);
+		
+		JPanel panel = new JPanel();
+		springLayout.putConstraint(SpringLayout.NORTH, panel, 0, SpringLayout.SOUTH, lblNewLabel);
+		springLayout.putConstraint(SpringLayout.WEST, panel, -571, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, panel, -6, SpringLayout.NORTH, lblFileView);
+		springLayout.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, getContentPane());
+		getContentPane().add(panel);
+		panel.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		panel.add(scrollPane);
+		
+		JTextArea textArea = new JTextArea();
+		commands.setArea(textArea);
+		scrollPane.setViewportView(textArea);
+
 		btnShowProcess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				commands.seeProcess(textPane);
+				commands.seeProcess();
 
 			}
 		});
 		btnShowSystemInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				commands.sysInfo(textPane);
+				commands.sysInfo();
 
+			}
+		});
+		btnAddUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					commands.AddUser(txtEnterName,passwordField);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		});
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					commands.grepString(grep);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 	}
