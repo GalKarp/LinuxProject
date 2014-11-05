@@ -35,6 +35,7 @@ public class GUI extends JFrame {
 	private JTextField txtEnterName;
 	private LinuxCommand commands;
 	private JPasswordField passwordField;
+	private JTextField cdField;
 	
 	public GUI() throws IOException, InterruptedException {
 	    commands = new LinuxCommand();
@@ -118,18 +119,6 @@ public class GUI extends JFrame {
 		springLayout.putConstraint(SpringLayout.WEST, rdbtnDirectory, 6, SpringLayout.EAST, find);
 		getContentPane().add(rdbtnDirectory);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("New radio button");
-		springLayout.putConstraint(SpringLayout.SOUTH, rdbtnNewRadioButton, -425, SpringLayout.SOUTH, getContentPane());
-		getContentPane().add(rdbtnNewRadioButton);
-		
-		
-		JRadioButton rdbtnR = new JRadioButton("R");
-		springLayout.putConstraint(SpringLayout.NORTH, rdbtnR, 134, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, rdbtnR, -495, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, rdbtnNewRadioButton, 35, SpringLayout.SOUTH, rdbtnR);
-		springLayout.putConstraint(SpringLayout.WEST, rdbtnR, 183, SpringLayout.WEST, getContentPane());
-		getContentPane().add(rdbtnR);
-		
 
 		
 
@@ -190,18 +179,18 @@ public class GUI extends JFrame {
 		getContentPane().add(btnMv);
 		
 		JComboBox comboBox_1 = new JComboBox();
+		springLayout.putConstraint(SpringLayout.NORTH, comboBox_1, 52, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, comboBox_1, 91, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, comboBox_1, -301, SpringLayout.NORTH, btnShowProcess);
 		springLayout.putConstraint(SpringLayout.EAST, btnMv, -6, SpringLayout.WEST, comboBox_1);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnLslst, -6, SpringLayout.NORTH, comboBox_1);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnLsl, -6, SpringLayout.NORTH, comboBox_1);
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox_1, 6, SpringLayout.SOUTH, btnLs);
-		springLayout.putConstraint(SpringLayout.WEST, comboBox_1, 0, SpringLayout.WEST, find);
-		springLayout.putConstraint(SpringLayout.SOUTH, comboBox_1, -46, SpringLayout.NORTH, rdbtnR);
-		springLayout.putConstraint(SpringLayout.EAST, comboBox_1, 0, SpringLayout.EAST, rdbtnR);
 		getContentPane().add(comboBox_1);
 		
 		JComboBox comboBox_2 = new JComboBox();
+		springLayout.putConstraint(SpringLayout.WEST, comboBox_2, 223, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, comboBox_1, -6, SpringLayout.WEST, comboBox_2);
 		springLayout.putConstraint(SpringLayout.NORTH, comboBox_2, 6, SpringLayout.SOUTH, btnLslst);
-		springLayout.putConstraint(SpringLayout.WEST, comboBox_2, 6, SpringLayout.EAST, comboBox_1);
 		springLayout.putConstraint(SpringLayout.SOUTH, comboBox_2, 0, SpringLayout.SOUTH, btnMv);
 		getContentPane().add(comboBox_2);
 		
@@ -269,6 +258,21 @@ public class GUI extends JFrame {
 		JTextArea textArea = new JTextArea();
 		commands.setArea(textArea);
 		scrollPane.setViewportView(textArea);
+		
+		JButton cdBtn = new JButton("cd");
+		springLayout.putConstraint(SpringLayout.NORTH, cdBtn, 6, SpringLayout.SOUTH, btnMv);
+		springLayout.putConstraint(SpringLayout.WEST, cdBtn, 10, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, cdBtn, 42, SpringLayout.SOUTH, btnMv);
+		springLayout.putConstraint(SpringLayout.EAST, cdBtn, 85, SpringLayout.WEST, getContentPane());
+		getContentPane().add(cdBtn);
+		
+		cdField = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, cdField, 6, SpringLayout.SOUTH, comboBox_1);
+		springLayout.putConstraint(SpringLayout.WEST, cdField, 6, SpringLayout.EAST, cdBtn);
+		springLayout.putConstraint(SpringLayout.SOUTH, cdField, 0, SpringLayout.SOUTH, cdBtn);
+		springLayout.putConstraint(SpringLayout.EAST, cdField, -11, SpringLayout.EAST, btnPwd);
+		getContentPane().add(cdField);
+		cdField.setColumns(10);
 
 		btnShowProcess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -309,5 +313,24 @@ public class GUI extends JFrame {
 				}
 			}
 		});
+		btnPwd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				commands.pwdCommand(textPane_1);
+			}
+		});
+		cdBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					commands.cdCommand(cdField);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		
 	}
 }

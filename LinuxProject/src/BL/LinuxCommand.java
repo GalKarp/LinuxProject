@@ -199,6 +199,45 @@ public class LinuxCommand {
 		this.textArea = textArea;
 		
 	}
+
+	public void pwdCommand(JTextPane textPane_1) {
+        String s;
+        Process p;
+        try {
+            p = Runtime.getRuntime().exec("pwd");
+            BufferedReader br = new BufferedReader(
+                new InputStreamReader(p.getInputStream()));
+            while ((s = br.readLine()) != null){
+            	textPane_1.setText(s);
+            }
+            p.waitFor();
+            System.out.println ("exit: " + p.exitValue());
+            p.destroy();
+        } catch (Exception e) {}
+		
+	}
+
+	public void cdCommand(JTextField cdField) throws IOException, InterruptedException {
+//        textArea.setText("");
+	    List<String> commands = new ArrayList<String>();
+	    commands.add("#!/usr/bin/perl");
+//	    commands.add("-c");
+	    commands.add("chdir('/home/galk')");
+	    // execute the command
+	    SystemCommandExecutor commandExecutor = new SystemCommandExecutor(commands);
+	    int result = commandExecutor.executeCommand();
+	    // get the stdout and stderr from the command that was run
+	    StringBuilder stdout = commandExecutor.getStandardOutputFromCommand();
+	    StringBuilder stderr = commandExecutor.getStandardErrorFromCommand();
+	    
+	    // print the stdout and stderr
+	    System.out.println("The numeric result of the command was: " + result);
+	    System.out.println("STDOUT:");
+	    System.out.println(stdout);
+	    System.out.println("STDERR:");
+	    System.out.println(stderr);	
+		
+	}
 		
 	
 }

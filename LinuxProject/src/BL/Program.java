@@ -13,7 +13,6 @@ public class Program {
 	        e.printStackTrace();
 	      }
 		new GUI();
-//	    new CopyOfGUI();
 
 	}
 
