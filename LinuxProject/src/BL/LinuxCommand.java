@@ -306,6 +306,39 @@ public class LinuxCommand {
         } catch (Exception e) {}
 		
 	}
+
+	public void lnCommand(JTextField lnTextField_1, JTextField lnTextField_2) {
+		String s;
+        Process p;
+        try {
+            p = Runtime.getRuntime().exec("/home/lior/./ln.pl "+lnTextField_1.getText()+" "+lnTextField_2.getText());
+            BufferedReader br = new BufferedReader(
+                new InputStreamReader(p.getInputStream()));
+            while ((s = br.readLine()) != null){
+            	textArea.setText(s);
+            }
+            p.waitFor();
+            System.out.println ("exit: " + p.exitValue());
+            p.destroy();
+        } catch (Exception e) {}
+		
+	}
+	public void lnsCommand(JTextField lnsTextField_1, JTextField lnsTextField_2) {
+		String s;
+        Process p;
+        try {
+            p = Runtime.getRuntime().exec("/home/lior/./lns.pl "+lnsTextField_1.getText()+" "+lnsTextField_2.getText());
+            BufferedReader br = new BufferedReader(
+                new InputStreamReader(p.getInputStream()));
+            while ((s = br.readLine()) != null){
+            	textArea.setText(s);
+            }
+            p.waitFor();
+            System.out.println ("exit: " + p.exitValue());
+            p.destroy();
+        } catch (Exception e) {}
+		
+	}
 		
 	
 }
