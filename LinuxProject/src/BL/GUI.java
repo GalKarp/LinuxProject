@@ -178,21 +178,21 @@ public class GUI extends JFrame {
 		springLayout.putConstraint(SpringLayout.SOUTH, btnLs, -6, SpringLayout.NORTH, btnMv);
 		getContentPane().add(btnMv);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox_1, 52, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, comboBox_1, 91, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, comboBox_1, -301, SpringLayout.NORTH, btnShowProcess);
-		springLayout.putConstraint(SpringLayout.EAST, btnMv, -6, SpringLayout.WEST, comboBox_1);
-		springLayout.putConstraint(SpringLayout.SOUTH, btnLslst, -6, SpringLayout.NORTH, comboBox_1);
-		springLayout.putConstraint(SpringLayout.SOUTH, btnLsl, -6, SpringLayout.NORTH, comboBox_1);
-		getContentPane().add(comboBox_1);
+		JTextField mvTextField_1 = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, mvTextField_1, 52, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, mvTextField_1, 91, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, mvTextField_1, -301, SpringLayout.NORTH, btnShowProcess);
+		springLayout.putConstraint(SpringLayout.EAST, btnMv, -6, SpringLayout.WEST, mvTextField_1);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnLslst, -6, SpringLayout.NORTH, mvTextField_1);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnLsl, -6, SpringLayout.NORTH, mvTextField_1);
+		getContentPane().add(mvTextField_1);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		springLayout.putConstraint(SpringLayout.WEST, comboBox_2, 223, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, comboBox_1, -6, SpringLayout.WEST, comboBox_2);
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox_2, 6, SpringLayout.SOUTH, btnLslst);
-		springLayout.putConstraint(SpringLayout.SOUTH, comboBox_2, 0, SpringLayout.SOUTH, btnMv);
-		getContentPane().add(comboBox_2);
+		JTextField mvTextField_2 = new JTextField();
+		springLayout.putConstraint(SpringLayout.WEST, mvTextField_2, 223, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, mvTextField_1, -6, SpringLayout.WEST, mvTextField_2);
+		springLayout.putConstraint(SpringLayout.NORTH, mvTextField_2, 6, SpringLayout.SOUTH, btnLslst);
+		springLayout.putConstraint(SpringLayout.SOUTH, mvTextField_2, 0, SpringLayout.SOUTH, btnMv);
+		getContentPane().add(mvTextField_2);
 		
 		JButton btnPwd = new JButton("pwd");
 		springLayout.putConstraint(SpringLayout.WEST, btnPwd, 521, SpringLayout.WEST, getContentPane());
@@ -212,7 +212,7 @@ public class GUI extends JFrame {
 		getContentPane().add(textPane_1);
 		
 		JLabel lblNewLabel = new JLabel("              Console");
-		springLayout.putConstraint(SpringLayout.EAST, comboBox_2, -497, SpringLayout.WEST, lblNewLabel);
+		springLayout.putConstraint(SpringLayout.EAST, mvTextField_2, -497, SpringLayout.WEST, lblNewLabel);
 		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel, 52, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel, -577, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, textPane_1, -6, SpringLayout.NORTH, lblNewLabel);
@@ -267,7 +267,7 @@ public class GUI extends JFrame {
 		getContentPane().add(cdBtn);
 		
 		cdField = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, cdField, 6, SpringLayout.SOUTH, comboBox_1);
+		springLayout.putConstraint(SpringLayout.NORTH, cdField, 6, SpringLayout.SOUTH, mvTextField_1);
 		springLayout.putConstraint(SpringLayout.WEST, cdField, 6, SpringLayout.EAST, cdBtn);
 		springLayout.putConstraint(SpringLayout.SOUTH, cdField, 0, SpringLayout.SOUTH, cdBtn);
 		springLayout.putConstraint(SpringLayout.EAST, cdField, -11, SpringLayout.EAST, btnPwd);
@@ -316,6 +316,21 @@ public class GUI extends JFrame {
 		btnPwd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				commands.pwdCommand(textPane_1);
+			}
+		});
+		btnLsl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				commands.lslCommand();
+			}
+		});
+		btnLslst.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				commands.lslstCommand();
+			}
+		});
+		btnMv.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				commands.mvCommand(mvTextField_1, mvTextField_2);
 			}
 		});
 		cdBtn.addActionListener(new ActionListener() {

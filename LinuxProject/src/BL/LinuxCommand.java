@@ -216,6 +216,23 @@ public class LinuxCommand {
         } catch (Exception e) {}
 		
 	}
+	
+	public void lslCommand() {
+        String s;
+        Process p;
+        try {
+            p = Runtime.getRuntime().exec("ls -ls");
+            BufferedReader br = new BufferedReader(
+                new InputStreamReader(p.getInputStream()));
+            while ((s = br.readLine()) != null){
+            	textArea.setText(s);
+            }
+            p.waitFor();
+            System.out.println ("exit: " + p.exitValue());
+            p.destroy();
+        } catch (Exception e) {}
+		
+	}
 
 	public void cdCommand(JTextField cdField) throws IOException, InterruptedException {
 //        textArea.setText("");
@@ -236,6 +253,57 @@ public class LinuxCommand {
 	    System.out.println(stdout);
 	    System.out.println("STDERR:");
 	    System.out.println(stderr);	
+		
+	}
+
+	public void lslstCommand() {
+		String s;
+        Process p;
+        try {
+            p = Runtime.getRuntime().exec("ls -lst");
+            BufferedReader br = new BufferedReader(
+                new InputStreamReader(p.getInputStream()));
+            while ((s = br.readLine()) != null){
+            	textArea.setText(s);
+            }
+            p.waitFor();
+            System.out.println ("exit: " + p.exitValue());
+            p.destroy();
+        } catch (Exception e) {}
+		
+	}
+
+	public void mvCommand(JTextField mvTextField_1, JTextField mvTextField_2) {
+		String s;
+        Process p;
+        try {
+            p = Runtime.getRuntime().exec("mv "+mvTextField_1.getText()+" "+mvTextField_2.getText());
+            BufferedReader br = new BufferedReader(
+                new InputStreamReader(p.getInputStream()));
+            while ((s = br.readLine()) != null){
+            	textArea.setText(s);
+            }
+            p.waitFor();
+            System.out.println ("exit: " + p.exitValue());
+            p.destroy();
+        } catch (Exception e) {}
+		
+	}
+
+	public void cpCommand(JTextField cpTextField_1, JTextField cpTextField_2) {
+		String s;
+        Process p;
+        try {
+            p = Runtime.getRuntime().exec("cp "+cpTextField_1.getText()+" "+cpTextField_2.getText());
+            BufferedReader br = new BufferedReader(
+                new InputStreamReader(p.getInputStream()));
+            while ((s = br.readLine()) != null){
+            	textArea.setText(s);
+            }
+            p.waitFor();
+            System.out.println ("exit: " + p.exitValue());
+            p.destroy();
+        } catch (Exception e) {}
 		
 	}
 		
