@@ -42,6 +42,8 @@ public class GUI extends JFrame {
 	private JTextField lnTextField_2;
 	private JTextField lnsTextField_1;
 	private JTextField lnsTextField_2;
+	private JTextField moreTextField_1;
+	private JTextField moreTextField_2;
 	
 	public GUI() throws IOException, InterruptedException {
 	    commands = new LinuxCommand();
@@ -270,12 +272,13 @@ public class GUI extends JFrame {
 		
 		JButton cdBtn = new JButton("cd");
 		springLayout.putConstraint(SpringLayout.WEST, cdBtn, 0, SpringLayout.WEST, btnLs);
-		springLayout.putConstraint(SpringLayout.SOUTH, cdBtn, -134, SpringLayout.NORTH, btnShowProcess);
+		springLayout.putConstraint(SpringLayout.SOUTH, cdBtn, -91, SpringLayout.NORTH, btnShowProcess);
 		springLayout.putConstraint(SpringLayout.EAST, cdBtn, 0, SpringLayout.EAST, btnLs);
 		getContentPane().add(cdBtn);
 		
 		cdField = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, cdField, 43, SpringLayout.NORTH, cdBtn);
+		springLayout.putConstraint(SpringLayout.NORTH, cdField, 262, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, cdBtn, 0, SpringLayout.NORTH, cdField);
 		springLayout.putConstraint(SpringLayout.WEST, cdField, 0, SpringLayout.WEST, btnLsl);
 		springLayout.putConstraint(SpringLayout.EAST, cdField, 0, SpringLayout.EAST, mvTextField_2);
 		getContentPane().add(cdField);
@@ -306,7 +309,6 @@ public class GUI extends JFrame {
 		JButton btnLn = new JButton("ln");
 		springLayout.putConstraint(SpringLayout.NORTH, btnLn, 6, SpringLayout.SOUTH, btnCp);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnLn, -494, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, cdBtn, 47, SpringLayout.SOUTH, btnLn);
 		springLayout.putConstraint(SpringLayout.WEST, btnLn, 0, SpringLayout.WEST, btnLs);
 		springLayout.putConstraint(SpringLayout.EAST, btnLn, 0, SpringLayout.EAST, btnLs);
 		getContentPane().add(btnLn);
@@ -331,14 +333,14 @@ public class GUI extends JFrame {
 		JButton btnLns = new JButton("ln-s");
 		springLayout.putConstraint(SpringLayout.NORTH, btnLns, 6, SpringLayout.SOUTH, btnLn);
 		springLayout.putConstraint(SpringLayout.WEST, btnLns, 0, SpringLayout.WEST, btnLs);
-		springLayout.putConstraint(SpringLayout.SOUTH, btnLns, -6, SpringLayout.NORTH, cdBtn);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnLns, -453, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, btnLns, 0, SpringLayout.EAST, btnLs);
 		getContentPane().add(btnLns);
 		
 		lnsTextField_1 = new JTextField();
+		springLayout.putConstraint(SpringLayout.SOUTH, lnsTextField_1, -453, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, lnsTextField_1, 6, SpringLayout.SOUTH, lnTextField_1);
 		springLayout.putConstraint(SpringLayout.WEST, lnsTextField_1, 0, SpringLayout.WEST, btnLsl);
-		springLayout.putConstraint(SpringLayout.SOUTH, lnsTextField_1, 0, SpringLayout.SOUTH, btnLns);
 		springLayout.putConstraint(SpringLayout.EAST, lnsTextField_1, 0, SpringLayout.EAST, mvTextField_1);
 		lnsTextField_1.setText("Original File");
 		getContentPane().add(lnsTextField_1);
@@ -350,6 +352,29 @@ public class GUI extends JFrame {
 		springLayout.putConstraint(SpringLayout.EAST, lnsTextField_2, 0, SpringLayout.EAST, mvTextField_2);
 		lnsTextField_2.setText("New Link Location");
 		getContentPane().add(lnsTextField_2);
+		
+		JButton moreBtn = new JButton("more");
+		springLayout.putConstraint(SpringLayout.NORTH, moreBtn, 6, SpringLayout.SOUTH, btnLns);
+		springLayout.putConstraint(SpringLayout.WEST, moreBtn, 0, SpringLayout.WEST, btnLs);
+		springLayout.putConstraint(SpringLayout.SOUTH, moreBtn, -6, SpringLayout.NORTH, cdBtn);
+		springLayout.putConstraint(SpringLayout.EAST, moreBtn, 0, SpringLayout.EAST, btnLs);
+		getContentPane().add(moreBtn);
+		
+		moreTextField_1 = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, moreTextField_1, 6, SpringLayout.SOUTH, lnsTextField_1);
+		springLayout.putConstraint(SpringLayout.WEST, moreTextField_1, 0, SpringLayout.WEST, btnLsl);
+		springLayout.putConstraint(SpringLayout.SOUTH, moreTextField_1, -6, SpringLayout.NORTH, cdField);
+		springLayout.putConstraint(SpringLayout.EAST, moreTextField_1, 0, SpringLayout.EAST, mvTextField_1);
+		moreTextField_1.setText("File Location");
+		getContentPane().add(moreTextField_1);
+		
+		moreTextField_2 = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, moreTextField_2, 6, SpringLayout.SOUTH, lnsTextField_2);
+		springLayout.putConstraint(SpringLayout.WEST, moreTextField_2, 0, SpringLayout.WEST, mvTextField_2);
+		springLayout.putConstraint(SpringLayout.SOUTH, moreTextField_2, -6, SpringLayout.NORTH, cdField);
+		springLayout.putConstraint(SpringLayout.EAST, moreTextField_2, 0, SpringLayout.EAST, mvTextField_2);
+		moreTextField_2.setText("Wanted Number Of Lines");
+		getContentPane().add(moreTextField_2);
 
 		btnShowProcess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -423,6 +448,11 @@ public class GUI extends JFrame {
 		btnLns.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				commands.lnsCommand(lnsTextField_1, lnsTextField_2);
+			}
+		});
+		moreBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				commands.moreCommand(moreTextField_1, moreTextField_2);
 			}
 		});
 		cdBtn.addActionListener(new ActionListener() {

@@ -339,6 +339,23 @@ public class LinuxCommand {
         } catch (Exception e) {}
 		
 	}
+
+	public void moreCommand(JTextField moreTextField_1,JTextField moreTextField_2) {
+		String s;
+        Process p;
+        textArea.setText(null);
+        try {
+            p = Runtime.getRuntime().exec("/home/lior/./mo.pl "+moreTextField_1.getText()+" "+moreTextField_2.getText());
+            BufferedReader br = new BufferedReader(
+                new InputStreamReader(p.getInputStream()));
+            while ((s = br.readLine()) != null){
+            	textArea.append(s+"\n");
+            }
+            p.waitFor();
+            System.out.println ("exit: " + p.exitValue());
+            p.destroy();
+        } catch (Exception e) {}
+	}
 		
 	
 }
