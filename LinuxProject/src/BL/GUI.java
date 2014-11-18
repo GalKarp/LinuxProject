@@ -27,6 +27,7 @@ import java.awt.TextArea;
 
 import javax.swing.JList;
 import javax.swing.JTextArea;
+import javax.swing.DropMode;
 
 
 public class GUI extends JFrame {
@@ -44,6 +45,8 @@ public class GUI extends JFrame {
 	private JTextField lnsTextField_2;
 	private JTextField moreTextField_1;
 	private JTextField moreTextField_2;
+	private JTextField suTextField;
+	private JTextField dateTextField;
 	
 	public GUI() throws IOException, InterruptedException {
 	    commands = new LinuxCommand();
@@ -278,8 +281,8 @@ public class GUI extends JFrame {
 		
 		cdField = new JTextField();
 		springLayout.putConstraint(SpringLayout.NORTH, cdField, 262, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, cdBtn, 0, SpringLayout.NORTH, cdField);
 		springLayout.putConstraint(SpringLayout.WEST, cdField, 0, SpringLayout.WEST, btnLsl);
+		springLayout.putConstraint(SpringLayout.SOUTH, cdField, 0, SpringLayout.SOUTH, cdBtn);
 		springLayout.putConstraint(SpringLayout.EAST, cdField, 0, SpringLayout.EAST, mvTextField_2);
 		getContentPane().add(cdField);
 		cdField.setColumns(10);
@@ -354,9 +357,10 @@ public class GUI extends JFrame {
 		getContentPane().add(lnsTextField_2);
 		
 		JButton moreBtn = new JButton("more");
+		springLayout.putConstraint(SpringLayout.SOUTH, moreBtn, -410, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, cdBtn, 6, SpringLayout.SOUTH, moreBtn);
 		springLayout.putConstraint(SpringLayout.NORTH, moreBtn, 6, SpringLayout.SOUTH, btnLns);
 		springLayout.putConstraint(SpringLayout.WEST, moreBtn, 0, SpringLayout.WEST, btnLs);
-		springLayout.putConstraint(SpringLayout.SOUTH, moreBtn, -6, SpringLayout.NORTH, cdBtn);
 		springLayout.putConstraint(SpringLayout.EAST, moreBtn, 0, SpringLayout.EAST, btnLs);
 		getContentPane().add(moreBtn);
 		
@@ -375,6 +379,50 @@ public class GUI extends JFrame {
 		springLayout.putConstraint(SpringLayout.EAST, moreTextField_2, 0, SpringLayout.EAST, mvTextField_2);
 		moreTextField_2.setText("Wanted Number Of Lines");
 		getContentPane().add(moreTextField_2);
+		
+		JButton suBtn = new JButton("su");
+		springLayout.putConstraint(SpringLayout.NORTH, suBtn, 5, SpringLayout.SOUTH, cdBtn);
+		springLayout.putConstraint(SpringLayout.WEST, suBtn, 0, SpringLayout.WEST, btnLs);
+		springLayout.putConstraint(SpringLayout.SOUTH, suBtn, 41, SpringLayout.SOUTH, cdBtn);
+		springLayout.putConstraint(SpringLayout.EAST, suBtn, 0, SpringLayout.EAST, btnLs);
+		getContentPane().add(suBtn);
+		
+		suTextField = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, suTextField, 6, SpringLayout.SOUTH, cdField);
+		springLayout.putConstraint(SpringLayout.WEST, suTextField, 0, SpringLayout.WEST, btnLsl);
+		springLayout.putConstraint(SpringLayout.SOUTH, suTextField, 0, SpringLayout.SOUTH, suBtn);
+		springLayout.putConstraint(SpringLayout.EAST, suTextField, 0, SpringLayout.EAST, mvTextField_1);
+		suTextField.setText("password");
+		getContentPane().add(suTextField);
+		
+		JButton exitSuBtn = new JButton("exit su");
+		springLayout.putConstraint(SpringLayout.NORTH, exitSuBtn, 6, SpringLayout.SOUTH, cdField);
+		springLayout.putConstraint(SpringLayout.WEST, exitSuBtn, -51, SpringLayout.EAST, passwordField);
+		springLayout.putConstraint(SpringLayout.SOUTH, exitSuBtn, 0, SpringLayout.SOUTH, suBtn);
+		springLayout.putConstraint(SpringLayout.EAST, exitSuBtn, 61, SpringLayout.EAST, passwordField);
+		getContentPane().add(exitSuBtn);
+		
+		JButton setDateBtn = new JButton("Set Date");
+		springLayout.putConstraint(SpringLayout.NORTH, setDateBtn, 6, SpringLayout.SOUTH, suBtn);
+		springLayout.putConstraint(SpringLayout.WEST, setDateBtn, 0, SpringLayout.WEST, btnLs);
+		springLayout.putConstraint(SpringLayout.SOUTH, setDateBtn, -6, SpringLayout.NORTH, btnShowProcess);
+		springLayout.putConstraint(SpringLayout.EAST, setDateBtn, 0, SpringLayout.EAST, btnLs);
+		getContentPane().add(setDateBtn);
+		
+		dateTextField = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, dateTextField, 6, SpringLayout.SOUTH, suTextField);
+		springLayout.putConstraint(SpringLayout.WEST, dateTextField, 0, SpringLayout.WEST, btnLsl);
+		springLayout.putConstraint(SpringLayout.SOUTH, dateTextField, -6, SpringLayout.NORTH, btnShowProcess);
+		springLayout.putConstraint(SpringLayout.EAST, dateTextField, 0, SpringLayout.EAST, mvTextField_2);
+		dateTextField.setColumns(10);
+		getContentPane().add(dateTextField);
+		
+		JButton dateBtn = new JButton("date");
+		springLayout.putConstraint(SpringLayout.NORTH, dateBtn, 0, SpringLayout.NORTH, btnLs);
+		springLayout.putConstraint(SpringLayout.WEST, dateBtn, 4, SpringLayout.EAST, btnLslst);
+		springLayout.putConstraint(SpringLayout.SOUTH, dateBtn, 0, SpringLayout.SOUTH, btnLs);
+		springLayout.putConstraint(SpringLayout.EAST, dateBtn, 88, SpringLayout.EAST, btnLslst);
+		getContentPane().add(dateBtn);
 
 		btnShowProcess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -453,6 +501,26 @@ public class GUI extends JFrame {
 		moreBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				commands.moreCommand(moreTextField_1, moreTextField_2);
+			}
+		});
+		suBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				commands.suCommand(suTextField);
+			}
+		});
+		exitSuBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				commands.exitSuCommand();
+			}
+		});
+		setDateBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				commands.setDateCommand(dateTextField);
+			}
+		});
+		dateBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				commands.dateCommand();
 			}
 		});
 		cdBtn.addActionListener(new ActionListener() {

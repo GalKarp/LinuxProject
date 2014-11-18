@@ -356,6 +356,85 @@ public class LinuxCommand {
             p.destroy();
         } catch (Exception e) {}
 	}
+
+	public void suCommand(JTextField suTextField) {
+		String s;
+        Process p;
+        try {
+        	System.out.println ("bla");
+            p = Runtime.getRuntime().exec("export SUDO_ASKPASS=/home/lior/pass.sh | sudo -A su");
+            System.out.println ("bla");
+            BufferedReader br = new BufferedReader(
+                new InputStreamReader(p.getErrorStream()));
+            while ((s = br.readLine()) != null){
+            	textArea.setText(s);
+            }
+            p.waitFor();
+            System.out.println ("bla");
+            System.out.println ("exit: " + p.exitValue());
+            p.destroy();
+        } catch (Exception e) {}
+//        try {
+//            p = Runtime.getRuntime().exec("sudo -A su");
+//            BufferedReader br = new BufferedReader(
+//                new InputStreamReader(p.getErrorStream()));
+//            while ((s = br.readLine()) != null){
+//            	textArea.setText(s);
+//            }
+//            p.waitFor();
+//            System.out.println ("exit: " + p.exitValue());
+//            p.destroy();
+//        } catch (Exception e) {}
+        
+	}
+
+	public void exitSuCommand() {
+		String s;
+        Process p;
+        try {
+            p = Runtime.getRuntime().exec("exit");
+            BufferedReader br = new BufferedReader(
+                new InputStreamReader(p.getInputStream()));
+            while ((s = br.readLine()) != null){
+            	textArea.setText(s);
+            }
+            p.waitFor();
+            System.out.println ("exit: " + p.exitValue());
+            p.destroy();
+        } catch (Exception e) {}
+	}
+
+	public void setDateCommand(JTextField dateTextField) {
+		String s;
+        Process p;
+        try {
+            p = Runtime.getRuntime().exec("sudo -S date -s "+dateTextField.getText()+" | echo 508810");
+            BufferedReader br = new BufferedReader(
+                new InputStreamReader(p.getInputStream()));
+            while ((s = br.readLine()) != null){
+            	textArea.setText(s);
+            }
+            p.waitFor();
+            System.out.println ("exit: " + p.exitValue());
+            p.destroy();
+        } catch (Exception e) {}
+	}
+
+	public void dateCommand() {
+		String s;
+        Process p;
+        try {
+            p = Runtime.getRuntime().exec("date");
+            BufferedReader br = new BufferedReader(
+                new InputStreamReader(p.getInputStream()));
+            while ((s = br.readLine()) != null){
+            	textArea.setText(s);
+            }
+            p.waitFor();
+            System.out.println ("exit: " + p.exitValue());
+            p.destroy();
+        } catch (Exception e) {}
+	}
 		
 	
 }

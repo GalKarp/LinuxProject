@@ -1,0 +1,6 @@
+#!/usr/bin/perl
+@lior = glob("*");
+for($i=0; $i<@lior; $i++) {
+	print $lior[$i]."\n";
+}
+print "\n";

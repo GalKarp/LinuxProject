@@ -1,0 +1,6 @@
+#!/usr/bin/perl
+@files = glob("*");
+for($i=0; $i<@files; $i++) {
+	print $files[$i]."\n";
+}
+print "\n";
