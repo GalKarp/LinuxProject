@@ -47,32 +47,36 @@ public class GUI extends JFrame {
 	private JTextField moreTextField_2;
 	private JTextField suTextField;
 	private JTextField dateTextField;
+	private JTextField sedTextField_1;
+	private JTextField sedTextField_2;
+	private JTextField sedTextField_3;
+	private JTextField chmodTextField;
 	
 	public GUI() throws IOException, InterruptedException {
 	    commands = new LinuxCommand();
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 		
-		JButton btnLs = new JButton("ls");
-		springLayout.putConstraint(SpringLayout.NORTH, btnLs, 10, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, btnLs, 10, SpringLayout.WEST, getContentPane());
-		getContentPane().add(btnLs);
+		JButton lsBtn = new JButton("ls");
+		springLayout.putConstraint(SpringLayout.NORTH, lsBtn, 10, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, lsBtn, 10, SpringLayout.WEST, getContentPane());
+		getContentPane().add(lsBtn);
 
 		
 		JButton btnLsl = new JButton("ls -ls");
 		springLayout.putConstraint(SpringLayout.NORTH, btnLsl, 10, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, btnLsl, 6, SpringLayout.EAST, btnLs);
+		springLayout.putConstraint(SpringLayout.WEST, btnLsl, 6, SpringLayout.EAST, lsBtn);
 //		springLayout.putConstraint(SpringLayout.EAST, btnLsl, 0, SpringLayout.EAST, btnShowSystemInfo);
 		getContentPane().add(btnLsl);
 		
 		JButton btnLslst = new JButton("ls -lst");
 		springLayout.putConstraint(SpringLayout.NORTH, btnLslst, 10, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, btnLslst, 6, SpringLayout.EAST, btnLsl);
+		springLayout.putConstraint(SpringLayout.WEST, btnLslst, 181, SpringLayout.WEST, getContentPane());
 //		springLayout.putConstraint(SpringLayout.WEST, btnLslst, 6, SpringLayout.EAST, btnLsl);
 		getContentPane().add(btnLslst);
 		
 		JButton btnGrep = new JButton("Find");
-		springLayout.putConstraint(SpringLayout.EAST, btnLs, 0, SpringLayout.EAST, btnGrep);
+		springLayout.putConstraint(SpringLayout.EAST, lsBtn, 0, SpringLayout.EAST, btnGrep);
 		springLayout.putConstraint(SpringLayout.NORTH, btnGrep, 578, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, btnGrep, 10, SpringLayout.WEST, getContentPane());
 		getContentPane().add(btnGrep);
@@ -95,8 +99,8 @@ public class GUI extends JFrame {
 		find.setColumns(10);
 		
 		grep = new JTextField();
-		grep.setText("  Enter String");
 		springLayout.putConstraint(SpringLayout.SOUTH, find, -6, SpringLayout.NORTH, grep);
+		grep.setText("  Enter String");
 		springLayout.putConstraint(SpringLayout.EAST, find, 0, SpringLayout.EAST, grep);
 		springLayout.putConstraint(SpringLayout.NORTH, grep, 0, SpringLayout.NORTH, btnNewButton);
 		springLayout.putConstraint(SpringLayout.WEST, grep, 6, SpringLayout.EAST, btnNewButton);
@@ -106,23 +110,27 @@ public class GUI extends JFrame {
 		grep.setColumns(10);
 		
 		JButton btnAddUser = new JButton("Add user");
-		springLayout.putConstraint(SpringLayout.EAST, btnAddUser, 0, SpringLayout.EAST, btnLs);
+		springLayout.putConstraint(SpringLayout.WEST, btnAddUser, 0, SpringLayout.WEST, lsBtn);
 		getContentPane().add(btnAddUser);
 		
 		txtEnterName = new JTextField();
 		springLayout.putConstraint(SpringLayout.NORTH, txtEnterName, 0, SpringLayout.NORTH, btnAddUser);
-		springLayout.putConstraint(SpringLayout.WEST, txtEnterName, 6, SpringLayout.EAST, btnAddUser);
+		springLayout.putConstraint(SpringLayout.WEST, txtEnterName, 4, SpringLayout.EAST, btnAddUser);
+		springLayout.putConstraint(SpringLayout.SOUTH, txtEnterName, 0, SpringLayout.SOUTH, btnAddUser);
 		txtEnterName.setText("   Enter Name");
 		getContentPane().add(txtEnterName);
 		txtEnterName.setColumns(10);
 		
 		JButton btnRemoveUser = new JButton("Remove User");
 		springLayout.putConstraint(SpringLayout.SOUTH, btnAddUser, -6, SpringLayout.NORTH, btnRemoveUser);
-		springLayout.putConstraint(SpringLayout.WEST, btnRemoveUser, 0, SpringLayout.WEST, btnLs);
+		springLayout.putConstraint(SpringLayout.NORTH, btnRemoveUser, 530, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, btnRemoveUser, 0, SpringLayout.WEST, lsBtn);
 		getContentPane().add(btnRemoveUser);
 		
 		JComboBox comboBox = new JComboBox();
+		springLayout.putConstraint(SpringLayout.NORTH, comboBox, 6, SpringLayout.SOUTH, txtEnterName);
 		springLayout.putConstraint(SpringLayout.WEST, comboBox, 6, SpringLayout.EAST, btnRemoveUser);
+		springLayout.putConstraint(SpringLayout.EAST, comboBox, -890, SpringLayout.EAST, getContentPane());
 		getContentPane().add(comboBox);
 		
 		JRadioButton rdbtnDirectory = new JRadioButton("Directory");
@@ -138,46 +146,44 @@ public class GUI extends JFrame {
 		
 		
 		JSeparator separator = new JSeparator();
-		springLayout.putConstraint(SpringLayout.SOUTH, btnRemoveUser, -6, SpringLayout.NORTH, separator);
 		springLayout.putConstraint(SpringLayout.SOUTH, comboBox, -6, SpringLayout.NORTH, separator);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnRemoveUser, -6, SpringLayout.NORTH, separator);
+		springLayout.putConstraint(SpringLayout.NORTH, find, 4, SpringLayout.SOUTH, separator);
+		springLayout.putConstraint(SpringLayout.SOUTH, separator, -4, SpringLayout.NORTH, btnGrep);
 		springLayout.putConstraint(SpringLayout.NORTH, separator, 570, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, find, 6, SpringLayout.SOUTH, separator);
 		springLayout.putConstraint(SpringLayout.WEST, separator, 0, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, separator, -6, SpringLayout.NORTH, btnGrep);
-		springLayout.putConstraint(SpringLayout.EAST, separator, 788, SpringLayout.WEST, getContentPane());
 		getContentPane().add(separator);
 		
 		passwordField = new JPasswordField();
-		springLayout.putConstraint(SpringLayout.WEST, passwordField, 262, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, txtEnterName, -6, SpringLayout.WEST, passwordField);
+		springLayout.putConstraint(SpringLayout.EAST, txtEnterName, -5, SpringLayout.WEST, passwordField);
 		springLayout.putConstraint(SpringLayout.NORTH, passwordField, 0, SpringLayout.NORTH, btnAddUser);
+		springLayout.putConstraint(SpringLayout.SOUTH, passwordField, 0, SpringLayout.SOUTH, btnAddUser);
+		springLayout.putConstraint(SpringLayout.WEST, passwordField, 281, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, passwordField, -736, SpringLayout.EAST, getContentPane());
 		passwordField.setToolTipText("Password");
 		getContentPane().add(passwordField);
 		
 		JSeparator separator_1 = new JSeparator();
-		springLayout.putConstraint(SpringLayout.NORTH, btnAddUser, 6, SpringLayout.SOUTH, separator_1);
-		springLayout.putConstraint(SpringLayout.SOUTH, passwordField, 43, SpringLayout.NORTH, separator_1);
-		springLayout.putConstraint(SpringLayout.SOUTH, txtEnterName, 43, SpringLayout.NORTH, separator_1);
-		springLayout.putConstraint(SpringLayout.NORTH, btnRemoveUser, 47, SpringLayout.SOUTH, separator_1);
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox, 47, SpringLayout.SOUTH, separator_1);
+		springLayout.putConstraint(SpringLayout.NORTH, btnAddUser, 4, SpringLayout.SOUTH, separator_1);
 		springLayout.putConstraint(SpringLayout.SOUTH, separator_1, -183, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, separator_1, 479, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, separator_1, 0, SpringLayout.WEST, separator);
-		springLayout.putConstraint(SpringLayout.EAST, separator_1, 708, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, separator_1, 0, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, separator_1, 0, SpringLayout.EAST, separator);
 		getContentPane().add(separator_1);
 		
 		JButton btnShowSystemInfo = new JButton("Show System Info");
+		springLayout.putConstraint(SpringLayout.SOUTH, btnShowSystemInfo, -193, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, separator_1, 6, SpringLayout.SOUTH, btnShowSystemInfo);
+		springLayout.putConstraint(SpringLayout.NORTH, btnShowSystemInfo, 434, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, btnShowSystemInfo, 10, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, btnShowSystemInfo, -1003, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, btnLsl, 0, SpringLayout.EAST, btnShowSystemInfo);
-		springLayout.putConstraint(SpringLayout.NORTH, btnShowSystemInfo, -45, SpringLayout.NORTH, separator_1);
-		springLayout.putConstraint(SpringLayout.SOUTH, btnShowSystemInfo, -6, SpringLayout.NORTH, separator_1);
 		getContentPane().add(btnShowSystemInfo);
 		
 		JButton btnShowProcess = new JButton("Show Process");
-		springLayout.putConstraint(SpringLayout.NORTH, btnShowProcess, -45, SpringLayout.NORTH, btnShowSystemInfo);
-		springLayout.putConstraint(SpringLayout.WEST, btnShowProcess, 10, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, btnShowProcess, -6, SpringLayout.NORTH, btnShowSystemInfo);
-		springLayout.putConstraint(SpringLayout.EAST, btnShowProcess, 0, SpringLayout.EAST, btnShowSystemInfo);
+		springLayout.putConstraint(SpringLayout.WEST, btnShowProcess, 181, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, btnShowProcess, -832, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, btnShowProcess, 0, SpringLayout.NORTH, btnShowSystemInfo);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnShowProcess, 39, SpringLayout.NORTH, btnShowSystemInfo);
 		getContentPane().add(btnShowProcess);
 		
 
@@ -185,18 +191,16 @@ public class GUI extends JFrame {
 		JButton btnMv = new JButton("mv");
 		springLayout.putConstraint(SpringLayout.NORTH, btnMv, 52, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, btnMv, 10, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, btnMv, -301, SpringLayout.NORTH, btnShowProcess);
-		springLayout.putConstraint(SpringLayout.SOUTH, btnLs, -6, SpringLayout.NORTH, btnMv);
+		springLayout.putConstraint(SpringLayout.SOUTH, lsBtn, -6, SpringLayout.NORTH, btnMv);
 		getContentPane().add(btnMv);
 		
 		JTextField mvTextField_1 = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, mvTextField_1, 52, SpringLayout.NORTH, getContentPane());
 		mvTextField_1.setText("File Original Location");
 		springLayout.putConstraint(SpringLayout.WEST, mvTextField_1, 91, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, btnMv, -6, SpringLayout.WEST, mvTextField_1);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnLslst, -6, SpringLayout.NORTH, mvTextField_1);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnLsl, -6, SpringLayout.NORTH, mvTextField_1);
-		springLayout.putConstraint(SpringLayout.NORTH, mvTextField_1, 52, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, mvTextField_1, -301, SpringLayout.NORTH, btnShowProcess);
 		getContentPane().add(mvTextField_1);
 		
 		JTextField mvTextField_2 = new JTextField();
@@ -208,9 +212,9 @@ public class GUI extends JFrame {
 		getContentPane().add(mvTextField_2);
 		
 		JButton btnPwd = new JButton("pwd");
-		springLayout.putConstraint(SpringLayout.WEST, btnPwd, 521, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, btnPwd, 10, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, btnPwd, -433, SpringLayout.NORTH, separator_1);
+		springLayout.putConstraint(SpringLayout.NORTH, btnPwd, 0, SpringLayout.NORTH, lsBtn);
+		springLayout.putConstraint(SpringLayout.WEST, btnPwd, 508, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, btnPwd, 0, SpringLayout.SOUTH, lsBtn);
 		btnPwd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -218,10 +222,11 @@ public class GUI extends JFrame {
 		getContentPane().add(btnPwd);
 		
 		JTextPane txtpnCurrentLocation = new JTextPane();
+		springLayout.putConstraint(SpringLayout.EAST, btnPwd, -19, SpringLayout.WEST, txtpnCurrentLocation);
+		springLayout.putConstraint(SpringLayout.EAST, separator, 0, SpringLayout.EAST, txtpnCurrentLocation);
 		txtpnCurrentLocation.setText("Current Location");
 		springLayout.putConstraint(SpringLayout.WEST, txtpnCurrentLocation, 607, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, txtpnCurrentLocation, -10, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, btnPwd, -6, SpringLayout.WEST, txtpnCurrentLocation);
 		springLayout.putConstraint(SpringLayout.NORTH, txtpnCurrentLocation, 10, SpringLayout.NORTH, getContentPane());
 		getContentPane().add(txtpnCurrentLocation);
 		
@@ -234,24 +239,6 @@ public class GUI extends JFrame {
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel, -330, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel, -209, SpringLayout.EAST, getContentPane());
 		getContentPane().add(lblNewLabel);
-		
-		JTree tree = new JTree();
-		springLayout.putConstraint(SpringLayout.NORTH, tree, 329, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, tree, -10, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, btnShowSystemInfo, -725, SpringLayout.WEST, tree);
-		springLayout.putConstraint(SpringLayout.EAST, passwordField, -477, SpringLayout.WEST, tree);
-		springLayout.putConstraint(SpringLayout.EAST, comboBox, -612, SpringLayout.WEST, tree);
-		springLayout.putConstraint(SpringLayout.WEST, tree, -278, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, tree, -10, SpringLayout.EAST, getContentPane());
-		getContentPane().add(tree);
-		
-		JLabel lblFileView = new JLabel("           File View");
-		springLayout.putConstraint(SpringLayout.NORTH, lblFileView, 237, SpringLayout.SOUTH, txtpnCurrentLocation);
-		springLayout.putConstraint(SpringLayout.WEST, lblFileView, -192, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, lblFileView, -6, SpringLayout.NORTH, tree);
-		springLayout.putConstraint(SpringLayout.EAST, lblFileView, -95, SpringLayout.EAST, getContentPane());
-		lblFileView.setBackground(SystemColor.activeCaption);
-		getContentPane().add(lblFileView);
 		setSize(1180, 693);
 		setResizable(false);
 		setVisible(true);
@@ -261,7 +248,6 @@ public class GUI extends JFrame {
 		JPanel panel = new JPanel();
 		springLayout.putConstraint(SpringLayout.NORTH, panel, 0, SpringLayout.SOUTH, lblNewLabel);
 		springLayout.putConstraint(SpringLayout.WEST, panel, -571, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, panel, -6, SpringLayout.NORTH, lblFileView);
 		springLayout.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, getContentPane());
 		getContentPane().add(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
@@ -274,9 +260,9 @@ public class GUI extends JFrame {
 		scrollPane.setViewportView(textArea);
 		
 		JButton cdBtn = new JButton("cd");
-		springLayout.putConstraint(SpringLayout.WEST, cdBtn, 0, SpringLayout.WEST, btnLs);
-		springLayout.putConstraint(SpringLayout.SOUTH, cdBtn, -91, SpringLayout.NORTH, btnShowProcess);
-		springLayout.putConstraint(SpringLayout.EAST, cdBtn, 0, SpringLayout.EAST, btnLs);
+		springLayout.putConstraint(SpringLayout.WEST, cdBtn, 0, SpringLayout.WEST, lsBtn);
+		springLayout.putConstraint(SpringLayout.SOUTH, cdBtn, -368, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, cdBtn, 0, SpringLayout.EAST, lsBtn);
 		getContentPane().add(cdBtn);
 		
 		cdField = new JTextField();
@@ -288,15 +274,17 @@ public class GUI extends JFrame {
 		cdField.setColumns(10);
 		
 		JButton btnCp = new JButton("cp");
+		springLayout.putConstraint(SpringLayout.NORTH, btnCp, 94, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, btnMv, -6, SpringLayout.NORTH, btnCp);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnCp, -536, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, btnCp, 6, SpringLayout.SOUTH, btnMv);
 		springLayout.putConstraint(SpringLayout.WEST, btnCp, 10, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, btnCp, 75, SpringLayout.WEST, btnLs);
+		springLayout.putConstraint(SpringLayout.EAST, btnCp, 75, SpringLayout.WEST, lsBtn);
 		getContentPane().add(btnCp);
 		
 		cpTextField_1 = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, cpTextField_1, 94, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, mvTextField_1, -6, SpringLayout.NORTH, cpTextField_1);
 		springLayout.putConstraint(SpringLayout.SOUTH, cpTextField_1, -536, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, cpTextField_1, 6, SpringLayout.SOUTH, mvTextField_1);
 		springLayout.putConstraint(SpringLayout.WEST, cpTextField_1, 0, SpringLayout.WEST, btnLsl);
 		springLayout.putConstraint(SpringLayout.EAST, cpTextField_1, 0, SpringLayout.EAST, mvTextField_1);
 		cpTextField_1.setText("File Original Location");
@@ -312,8 +300,8 @@ public class GUI extends JFrame {
 		JButton btnLn = new JButton("ln");
 		springLayout.putConstraint(SpringLayout.NORTH, btnLn, 6, SpringLayout.SOUTH, btnCp);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnLn, -494, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, btnLn, 0, SpringLayout.WEST, btnLs);
-		springLayout.putConstraint(SpringLayout.EAST, btnLn, 0, SpringLayout.EAST, btnLs);
+		springLayout.putConstraint(SpringLayout.WEST, btnLn, 0, SpringLayout.WEST, lsBtn);
+		springLayout.putConstraint(SpringLayout.EAST, btnLn, 0, SpringLayout.EAST, lsBtn);
 		getContentPane().add(btnLn);
 		
 		lnTextField_1 = new JTextField();
@@ -335,9 +323,9 @@ public class GUI extends JFrame {
 		
 		JButton btnLns = new JButton("ln-s");
 		springLayout.putConstraint(SpringLayout.NORTH, btnLns, 6, SpringLayout.SOUTH, btnLn);
-		springLayout.putConstraint(SpringLayout.WEST, btnLns, 0, SpringLayout.WEST, btnLs);
+		springLayout.putConstraint(SpringLayout.WEST, btnLns, 0, SpringLayout.WEST, lsBtn);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnLns, -453, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, btnLns, 0, SpringLayout.EAST, btnLs);
+		springLayout.putConstraint(SpringLayout.EAST, btnLns, 0, SpringLayout.EAST, lsBtn);
 		getContentPane().add(btnLns);
 		
 		lnsTextField_1 = new JTextField();
@@ -357,11 +345,11 @@ public class GUI extends JFrame {
 		getContentPane().add(lnsTextField_2);
 		
 		JButton moreBtn = new JButton("more");
-		springLayout.putConstraint(SpringLayout.SOUTH, moreBtn, -410, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, cdBtn, 6, SpringLayout.SOUTH, moreBtn);
+		springLayout.putConstraint(SpringLayout.SOUTH, moreBtn, -410, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, moreBtn, 6, SpringLayout.SOUTH, btnLns);
-		springLayout.putConstraint(SpringLayout.WEST, moreBtn, 0, SpringLayout.WEST, btnLs);
-		springLayout.putConstraint(SpringLayout.EAST, moreBtn, 0, SpringLayout.EAST, btnLs);
+		springLayout.putConstraint(SpringLayout.WEST, moreBtn, 0, SpringLayout.WEST, lsBtn);
+		springLayout.putConstraint(SpringLayout.EAST, moreBtn, 0, SpringLayout.EAST, lsBtn);
 		getContentPane().add(moreBtn);
 		
 		moreTextField_1 = new JTextField();
@@ -381,10 +369,10 @@ public class GUI extends JFrame {
 		getContentPane().add(moreTextField_2);
 		
 		JButton suBtn = new JButton("su");
-		springLayout.putConstraint(SpringLayout.NORTH, suBtn, 5, SpringLayout.SOUTH, cdBtn);
-		springLayout.putConstraint(SpringLayout.WEST, suBtn, 0, SpringLayout.WEST, btnLs);
+		springLayout.putConstraint(SpringLayout.NORTH, suBtn, 303, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, suBtn, 0, SpringLayout.WEST, lsBtn);
 		springLayout.putConstraint(SpringLayout.SOUTH, suBtn, 41, SpringLayout.SOUTH, cdBtn);
-		springLayout.putConstraint(SpringLayout.EAST, suBtn, 0, SpringLayout.EAST, btnLs);
+		springLayout.putConstraint(SpringLayout.EAST, suBtn, 0, SpringLayout.EAST, lsBtn);
 		getContentPane().add(suBtn);
 		
 		suTextField = new JTextField();
@@ -397,32 +385,80 @@ public class GUI extends JFrame {
 		
 		JButton exitSuBtn = new JButton("exit su");
 		springLayout.putConstraint(SpringLayout.NORTH, exitSuBtn, 6, SpringLayout.SOUTH, cdField);
-		springLayout.putConstraint(SpringLayout.WEST, exitSuBtn, -51, SpringLayout.EAST, passwordField);
+		springLayout.putConstraint(SpringLayout.WEST, exitSuBtn, 37, SpringLayout.EAST, suTextField);
 		springLayout.putConstraint(SpringLayout.SOUTH, exitSuBtn, 0, SpringLayout.SOUTH, suBtn);
-		springLayout.putConstraint(SpringLayout.EAST, exitSuBtn, 61, SpringLayout.EAST, passwordField);
+		springLayout.putConstraint(SpringLayout.EAST, exitSuBtn, -123, SpringLayout.WEST, panel);
 		getContentPane().add(exitSuBtn);
 		
 		JButton setDateBtn = new JButton("Set Date");
 		springLayout.putConstraint(SpringLayout.NORTH, setDateBtn, 6, SpringLayout.SOUTH, suBtn);
-		springLayout.putConstraint(SpringLayout.WEST, setDateBtn, 0, SpringLayout.WEST, btnLs);
-		springLayout.putConstraint(SpringLayout.SOUTH, setDateBtn, -6, SpringLayout.NORTH, btnShowProcess);
-		springLayout.putConstraint(SpringLayout.EAST, setDateBtn, 0, SpringLayout.EAST, btnLs);
+		springLayout.putConstraint(SpringLayout.WEST, setDateBtn, 0, SpringLayout.WEST, lsBtn);
+		springLayout.putConstraint(SpringLayout.SOUTH, setDateBtn, -51, SpringLayout.NORTH, btnShowSystemInfo);
+		springLayout.putConstraint(SpringLayout.EAST, setDateBtn, 0, SpringLayout.EAST, lsBtn);
 		getContentPane().add(setDateBtn);
 		
 		dateTextField = new JTextField();
 		springLayout.putConstraint(SpringLayout.NORTH, dateTextField, 6, SpringLayout.SOUTH, suTextField);
 		springLayout.putConstraint(SpringLayout.WEST, dateTextField, 0, SpringLayout.WEST, btnLsl);
-		springLayout.putConstraint(SpringLayout.SOUTH, dateTextField, -6, SpringLayout.NORTH, btnShowProcess);
+		springLayout.putConstraint(SpringLayout.SOUTH, dateTextField, -51, SpringLayout.NORTH, btnShowSystemInfo);
 		springLayout.putConstraint(SpringLayout.EAST, dateTextField, 0, SpringLayout.EAST, mvTextField_2);
 		dateTextField.setColumns(10);
 		getContentPane().add(dateTextField);
 		
 		JButton dateBtn = new JButton("date");
-		springLayout.putConstraint(SpringLayout.NORTH, dateBtn, 0, SpringLayout.NORTH, btnLs);
+		springLayout.putConstraint(SpringLayout.NORTH, dateBtn, 0, SpringLayout.NORTH, lsBtn);
 		springLayout.putConstraint(SpringLayout.WEST, dateBtn, 4, SpringLayout.EAST, btnLslst);
-		springLayout.putConstraint(SpringLayout.SOUTH, dateBtn, 0, SpringLayout.SOUTH, btnLs);
+		springLayout.putConstraint(SpringLayout.SOUTH, dateBtn, 0, SpringLayout.SOUTH, lsBtn);
 		springLayout.putConstraint(SpringLayout.EAST, dateBtn, 88, SpringLayout.EAST, btnLslst);
 		getContentPane().add(dateBtn);
+		
+		JButton sedBtn = new JButton("sed");
+		springLayout.putConstraint(SpringLayout.SOUTH, panel, -5, SpringLayout.SOUTH, sedBtn);
+		springLayout.putConstraint(SpringLayout.NORTH, sedBtn, 389, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, sedBtn, -238, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, sedBtn, 0, SpringLayout.WEST, lsBtn);
+		springLayout.putConstraint(SpringLayout.EAST, sedBtn, 75, SpringLayout.WEST, lsBtn);
+		getContentPane().add(sedBtn);
+		
+		sedTextField_1 = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, sedTextField_1, 6, SpringLayout.SOUTH, dateTextField);
+		springLayout.putConstraint(SpringLayout.WEST, sedTextField_1, 0, SpringLayout.WEST, btnLsl);
+		springLayout.putConstraint(SpringLayout.SOUTH, sedTextField_1, 42, SpringLayout.SOUTH, dateTextField);
+		springLayout.putConstraint(SpringLayout.EAST, sedTextField_1, -118, SpringLayout.EAST, mvTextField_1);
+		sedTextField_1.setText("String To Replace");
+		getContentPane().add(sedTextField_1);
+		
+		sedTextField_2 = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, sedTextField_2, 6, SpringLayout.SOUTH, dateTextField);
+		springLayout.putConstraint(SpringLayout.WEST, sedTextField_2, 6, SpringLayout.EAST, sedTextField_1);
+		springLayout.putConstraint(SpringLayout.SOUTH, sedTextField_2, 42, SpringLayout.SOUTH, dateTextField);
+		springLayout.putConstraint(SpringLayout.EAST, sedTextField_2, 118, SpringLayout.EAST, sedTextField_1);
+		sedTextField_2.setText("New String");
+		getContentPane().add(sedTextField_2);
+		
+		sedTextField_3 = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, sedTextField_3, 6, SpringLayout.SOUTH, dateTextField);
+		springLayout.putConstraint(SpringLayout.WEST, sedTextField_3, 6, SpringLayout.EAST, sedTextField_2);
+		springLayout.putConstraint(SpringLayout.SOUTH, sedTextField_3, -12, SpringLayout.NORTH, btnShowProcess);
+		springLayout.putConstraint(SpringLayout.EAST, sedTextField_3, 0, SpringLayout.EAST, mvTextField_2);
+		sedTextField_3.setText("File Path");
+		getContentPane().add(sedTextField_3);
+		
+		JButton chmodBtn = new JButton("Change Mode");
+		springLayout.putConstraint(SpringLayout.NORTH, chmodBtn, 134, SpringLayout.NORTH, suBtn);
+		springLayout.putConstraint(SpringLayout.WEST, chmodBtn, 0, SpringLayout.WEST, txtpnCurrentLocation);
+		springLayout.putConstraint(SpringLayout.SOUTH, chmodBtn, -6, SpringLayout.NORTH, separator_1);
+		springLayout.putConstraint(SpringLayout.EAST, chmodBtn, 263, SpringLayout.EAST, exitSuBtn);
+		getContentPane().add(chmodBtn);
+		
+		chmodTextField = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, chmodTextField, 134, SpringLayout.NORTH, suBtn);
+		springLayout.putConstraint(SpringLayout.WEST, chmodTextField, 6, SpringLayout.EAST, chmodBtn);
+		springLayout.putConstraint(SpringLayout.SOUTH, chmodTextField, -6, SpringLayout.NORTH, separator_1);
+		springLayout.putConstraint(SpringLayout.EAST, chmodTextField, -10, SpringLayout.EAST, getContentPane());
+		chmodTextField.setText("File Location");
+		chmodTextField.setColumns(10);
+		getContentPane().add(chmodTextField);
 
 		btnShowProcess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -468,6 +504,11 @@ public class GUI extends JFrame {
 				commands.pwdCommand(txtpnCurrentLocation);
 			}
 		});
+		lsBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				commands.lsCommand();
+			}
+		});
 		btnLsl.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				commands.lslCommand();
@@ -476,6 +517,16 @@ public class GUI extends JFrame {
 		btnLslst.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				commands.lslstCommand();
+			}
+		});
+		chmodBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				commands.chmodCommand(chmodTextField);
+			}
+		});
+		sedBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				commands.sedCommand(sedTextField_1,sedTextField_2,sedTextField_3);
 			}
 		});
 		btnMv.addActionListener(new ActionListener() {

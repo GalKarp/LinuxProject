@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-@files = glob("*");
+@files = glob("/home/lior/git/LinuxProject/LinuxProject/*");
 for($i=0; $i<@files; $i++) {
 	print $files[$i]."\n";
 }
