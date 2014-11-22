@@ -1,0 +1,4 @@
+sudo su <<EOF
+date +%D -s "$1"
+date +%T -s "$2"
+EOF
