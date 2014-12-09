@@ -1,9 +1,13 @@
 #!/usr/bin/perl
 
-$path = $ARGV[0];
-@files = glob("$path/*");
-for($i=0; $i<@files; $i++) {
-	print $files[$i]."\n";
-}
+my $dir = $ARGV[0];
 
-print "\n";
+opendir(openedDirectory, $dir);
+
+while (my $currentFIle = readdir(openedDirectory)) {
+
+next if ($currentFIle =~ m/^\./);
+print "$currentFIle\n";
+}
+closedir(DIR);
+exit 0;
