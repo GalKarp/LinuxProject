@@ -56,14 +56,12 @@ public class LinuxCommand {
 					String s;
 					Process p;
 					textArea.setText("");
-					System.out.println(selectedItem);
 					if(selectedItem != "root"){
 						p = Runtime.getRuntime().exec("sudo userdel " + selectedItem);
 
 						BufferedReader br = new BufferedReader(
 								new InputStreamReader(p.getInputStream()));
 						while ((s = br.readLine()) != null) {
-							System.out.println(s);
 							textArea.append(s + "\n");
 						}
 						p.waitFor();
@@ -160,7 +158,7 @@ public class LinuxCommand {
 					System.out.println("exit: " + p.exitValue());
 					p.destroy();
 					attachPassword(userName, passwordField);
-
+					//attachPassword(userName, passwordField);
 				} catch (Exception e) {
 				}
 

@@ -9,7 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+//import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -49,7 +49,7 @@ public class GUI extends JFrame {
 	private JTextField sedTextField_2;
 	private JTextField sedTextField_3;
 	private JTextField chmodTextField;
-	private boolean addUserFlag = false;
+//	private boolean addUserFlag = false;
 	private JTextField recoveBackupTextField_1;
 	private JTextField recoveBackupTextField_2;
 	
@@ -685,20 +685,20 @@ public class GUI extends JFrame {
 		});
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
 				commands.RemoveUser(comboBox);
-
 			}
 		});
 		btnAddUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					commands.AddUser(txtEnterName,passwordField);
-					if(addUserFlag == false){
-					JOptionPane.showMessageDialog(getContentPane(),"Press Add User again ");
-					}
+					for(int i=0;i<200000;i++){	}
+					commands.AddUser(txtEnterName,passwordField);
+//					if(addUserFlag == false){
+//						JOptionPane.showMessageDialog(getContentPane(),"Press Add User again ");
+//					}
 					commands.RemoveUser(comboBox);
-					addUserFlag = true;
+//					addUserFlag = true;
 				} catch (IOException e) {
 					e.printStackTrace();
 				} catch (InterruptedException e) {
